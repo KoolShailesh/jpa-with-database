@@ -14,12 +14,15 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "TASK")
 @Builder
-//@ToString
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Task implements Serializable {
@@ -29,41 +32,12 @@ public class Task implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "TASK_ID")
-	long taskId;
-	
+	private long taskId;
+
+	private String description;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "EMPLOYEE_ID")
 	Employee employee;
-
-	private String description;
-
-	
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public long getTaskId() {
-		return taskId;
-	}
-
-	public void setTaskId(long taskId) {
-		this.taskId = taskId;
-	}
-
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	
 
 }

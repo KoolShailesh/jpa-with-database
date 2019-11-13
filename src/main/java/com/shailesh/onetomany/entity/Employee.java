@@ -1,6 +1,5 @@
 package com.shailesh.onetomany.entity;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,66 +14,31 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Setter;
 
-@Entity
 @Table(name = "EMPLOYEE")
 @Builder
-//@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	public long getEmployeeId() {
-		return employeeId;
-	}
-
-	public void setEmployeeId(long employeeId) {
-		this.employeeId = employeeId;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public List<Task> getTasks() {
-		return tasks;
-	}
-
-	public void setTasks(List<Task> tasks) {
-		this.tasks = tasks;
-	}
+@Getter
+@Setter
+@Entity
+public class Employee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "EMPLOYEE_ID")
-	long employeeId;
+	private long employeeId;
 
 	@Column(name = "FIRST_NAME")
-	String firstName;
+	private String firstName;
 
 	@Column(name = "LAST_NAME")
-	String lastName;
+	private String lastName;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "employee", cascade = CascadeType.ALL)
-	List<Task> tasks;
+	private List<Task> tasks;
 
 }
